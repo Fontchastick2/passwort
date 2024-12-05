@@ -8,11 +8,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CredentialCardComponent } from './credential-card/credential-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CredentialCardComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -23,7 +28,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatAutocompleteModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [
     provideClientHydration()

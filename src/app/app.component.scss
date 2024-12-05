@@ -4,3 +4,14 @@
         margin: 0;
     }
 }
+
+/* credential-card.component.css */
+.selected {
+    border: 2px solid #3f51b5;
+    box-shadow: 0 4px 20px rgba(63, 81, 181, 0.2);
+}
+
+.password-display {
+    font-size: 1.5rem;
+    color: #333;
+}
