@@ -33,8 +33,8 @@
       <!-- Username -->
       <mat-form-field class="flex-1" appearance="outline">
         <mat-label>Username</mat-label>
-        <input type="text" matInput formControlName="username" />
-        <mat-error *ngIf="form.get('username')?.hasError('required')">
+        <input type="text" matInput formControlName="userName" />
+        <mat-error *ngIf="form.get('userName')?.hasError('required')">
           Username is required
         </mat-error>
       </mat-form-field>
@@ -64,5 +64,5 @@
 </div>
 <div *ngFor="let credential of credentials; let i = index">
   <app-credential-card [credential]="credential" [isSelected]="selectedCardIndex === i" (selectCard)="onCardSelect(i)"
-    (edit)="onEditCredential(credential.id!)" (delete)="onDeleteCredential(credential.id!)"></app-credential-card>
+    (edit)="onEditCredential(credential.id!)" (delete)="onDeleteCredential(credential)"></app-credential-card>
 </div>

@@ -14,11 +14,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CredentialCardComponent } from './credential-card/credential-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CredentialCardComponent
+    CredentialCardComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -32,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatCardModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [
     provideClientHydration()

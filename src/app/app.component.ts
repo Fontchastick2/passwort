@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Password, PasswordService } from './services/password.service';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -23,12 +26,12 @@ export class AppComponent {
   };
   filteredApps: string[] = [];
 
-  constructor(private fb: FormBuilder, private passwordSVC: PasswordService) {
+  constructor(private fb: FormBuilder, private passwordSVC: PasswordService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     // Initialize form
     this.form = this.fb.group({
       category: [null],
       app: [null, Validators.required],
-      username: [null, Validators.required],
+      userName: [null, Validators.required],
       password: [null, Validators.required]
     });
     // Watch for category changes
@@ -52,11 +55,17 @@ export class AppComponent {
       this.passwordSVC.addPassword(this.form.value).subscribe(() => {
         this.credentials.unshift(this.form.value);
         this.clearForm();
+        this.snackBar.open('Password successfully added', 'Done', {
+          duration: 3000
+        });
       })
     } else {
       this.passwordSVC.updatePassword(this.passwordId, this.form.value).subscribe(() => {
         this.replacePasswordById(this.passwordId!, this.form.value);
         this.clearForm();
+        this.snackBar.open('Password successfully updated', 'Done', {
+          duration: 3000
+        });
       })
     }
   }
@@ -84,7 +93,7 @@ export class AppComponent {
       this.form.patchValue({
         category: val.category,
         app: val.app,
-        username: val.userName,
+        userName: val.userName,
         password: ""
       })
     })
@@ -95,13 +104,36 @@ export class AppComponent {
     this.form.reset({
       category: null,
       app: null,
-      username: null,
+      userName: null,
       password: null
     });
   }
 
-  onDeleteCredential(index: number): void {
-    console.log('Delete credential at index', index);
-    this.credentials.splice(index, 1);
+  // Open delete modal
+  onDeleteCredential(password: Password) {
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      data: { password: password }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteItem(password.id!);
+      }
+    });
+  }
+
+  // Function to handle item deletion
+  deleteItem(id: number) {
+    this.passwordSVC.deletePassword(id).subscribe(() => {
+      const index = this.credentials.findIndex(pass => pass.id === id); // Find the index
+      if (index !== -1) {
+        this.credentials.splice(index, 1); // Remove the item at that index
+      }
+      this.snackBar.open('Password deleted', 'Done', {
+        duration: 3000
+      });
+    })
+
+    // Add your deletion logic here
   }
 }
