@@ -55,9 +55,21 @@ export class AppComponent {
       })
     } else {
       this.passwordSVC.updatePassword(this.passwordId, this.form.value).subscribe(() => {
-        this.credentials.unshift(this.form.value);
+        this.replacePasswordById(this.passwordId!, this.form.value);
         this.clearForm();
       })
+    }
+  }
+
+  replacePasswordById(id: number, newPassword: Password) {
+    const index = this.credentials.findIndex(p => p.id === id);  // Find the index by id
+
+    if (index !== -1) {
+      console.log(newPassword)
+      newPassword.id = id;
+      this.credentials[index] = newPassword;  // Replace the item at the found index
+    } else {
+      console.log('Item with id ' + id + ' not found');
     }
   }
 
