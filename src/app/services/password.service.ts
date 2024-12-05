@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PasswordService {
-  private baseUrl = 'http://localhost:5000/api/passwords'; // Your backend URL
+  private baseUrl = 'http://localhost:5051/api/passwords'; // Your backend URL
 
   constructor(private http: HttpClient) { }
 

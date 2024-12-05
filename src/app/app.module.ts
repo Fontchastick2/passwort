@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CredentialCardComponent } from './credential-card/credential-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CredentialCardComponent } from './credential-card/credential-card.compo
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

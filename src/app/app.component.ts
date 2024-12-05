@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { PasswordService } from './services/password.service';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,7 @@ export class AppComponent {
   };
   filteredApps: string[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private passwordSVC: PasswordService) {
     // Initialize form
     this.form = this.fb.group({
       category: [null],
@@ -48,11 +49,11 @@ export class AppComponent {
       username: [null, Validators.required],
       password: [null, Validators.required]
     });
-
     // Watch for category changes
     this.form.get('category')?.valueChanges.subscribe((value) => {
       this.filteredApps = this.apps[value] || [];
     });
+    passwordSVC.getAllPasswords().subscribe(val => console.log(val))
   }
 
   onCategoryChange(event: any): void {
@@ -64,6 +65,9 @@ export class AppComponent {
   onSubmit(): void {
     if (this.form.valid) {
       console.log(this.form.value);
+      this.passwordSVC.addPassword(this.form.value).subscribe(() => {
+        this.credentials.unshift(this.form.value);
+      })
     }
   }
 
