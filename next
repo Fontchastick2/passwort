@@ -1,6 +1,6 @@
--page layout
--add password to list
--get by id to the form
--edit password
--delete modal
--first modal prompt (idealy fetched on the backend)
+F-1 page layout
+F-2 add password to list
+F-3 get by id to the form
+F-4 edit password
+F-5 delete modal
+F-6 first modal prompt (idealy fetched on the backend)

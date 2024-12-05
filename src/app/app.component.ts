@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { PasswordService } from './services/password.service';
+import { Password, PasswordService } from './services/password.service';
 
 @Component({
   selector: 'app-root',
@@ -9,28 +9,10 @@ import { PasswordService } from './services/password.service';
 })
 export class AppComponent {
   form: FormGroup;
-
-  credentials = [
-    {
-      username: 'john_doe',
-      app: 'Slack',
-      category: 'Work',
-      password: 'password123',
-    },
-    {
-      username: 'jane_smith',
-      app: 'Steam',
-      category: 'Gaming',
-      password: 'gamingpass',
-    },
-    {
-      username: 'alex_brown',
-      app: 'Notion',
-      category: 'Personal',
-      password: 'notionpass',
-    },
+  credentials: Password[] = [
   ];
-
+  selectedCardIndex: number | null = null;
+  passwordId: number | null = null;
   // Options for autocomplete
   categories = ['school', 'work', 'personal', 'gaming'];
   apps: any = {
@@ -53,7 +35,7 @@ export class AppComponent {
     this.form.get('category')?.valueChanges.subscribe((value) => {
       this.filteredApps = this.apps[value] || [];
     });
-    passwordSVC.getAllPasswords().subscribe(val => console.log(val))
+    passwordSVC.getAllPasswords().subscribe(val => this.credentials = val)
   }
 
   onCategoryChange(event: any): void {
@@ -64,14 +46,12 @@ export class AppComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
       this.passwordSVC.addPassword(this.form.value).subscribe(() => {
         this.credentials.unshift(this.form.value);
+        this.passwordId = null;
       })
     }
   }
-
-  selectedCardIndex: number | null = null;
 
   onCardSelect(index: number): void {
     this.selectedCardIndex = this.selectedCardIndex === index ? null : index;
@@ -79,7 +59,14 @@ export class AppComponent {
 
   onEditCredential(index: number): void {
     console.log('Edit credential at index', index);
-    // Implement edit logic
+    this.passwordSVC.getPasswordById(index).subscribe((val) => {
+      this.form.patchValue({
+        category: val.category,
+        app: val.app,
+        username: val.userName,
+        password: ""
+      })
+    })
   }
 
   onDeleteCredential(index: number): void {
