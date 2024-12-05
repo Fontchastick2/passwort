@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { PasswordService } from '../services/password.service';
 
 @Component({
   selector: 'app-credential-card',
@@ -13,6 +14,17 @@ export class CredentialCardComponent {
   @Output() delete = new EventEmitter<void>();
 
   showPassword: boolean = false;
+  password: string = "";
+
+  constructor(private passwordSVC: PasswordService) {
+  }
+
+  ngOnInit() {
+    console.log(this.credential)
+    this.passwordSVC.getDecryptedPasswordById(this.credential.id).subscribe(val => {
+      this.password = val.decryptedPassword
+    })
+  }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
