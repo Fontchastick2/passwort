@@ -10,12 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CredentialCardComponent } from './credential-card/credential-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    CommonModule,
+
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -36,7 +40,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatIconModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     provideClientHydration()

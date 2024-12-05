@@ -15,3 +15,19 @@
     font-size: 1.5rem;
     color: #333;
 }
+
+.break-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* Ensures items wrap to the next line if needed */
+    gap: 10px;
+}
+
+.error {
+    font-size: 0.8em;
+    color: red;
+}
+
+.form {
+    padding: 10px 3vw;
+}
