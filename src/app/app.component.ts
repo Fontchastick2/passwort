@@ -35,7 +35,10 @@ export class AppComponent {
     this.form.get('category')?.valueChanges.subscribe((value) => {
       this.filteredApps = this.apps[value] || [];
     });
-    passwordSVC.getAllPasswords().subscribe(val => this.credentials = val)
+    passwordSVC.getAllPasswords().subscribe(val => {
+      console.log(val)
+      this.credentials = val
+    })
   }
 
   onCategoryChange(event: any): void {
@@ -45,10 +48,15 @@ export class AppComponent {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
+    if (this.passwordId == null) {
       this.passwordSVC.addPassword(this.form.value).subscribe(() => {
         this.credentials.unshift(this.form.value);
-        this.passwordId = null;
+        this.clearForm();
+      })
+    } else {
+      this.passwordSVC.updatePassword(this.passwordId, this.form.value).subscribe(() => {
+        this.credentials.unshift(this.form.value);
+        this.clearForm();
       })
     }
   }
@@ -60,6 +68,7 @@ export class AppComponent {
   onEditCredential(index: number): void {
     console.log('Edit credential at index', index);
     this.passwordSVC.getPasswordById(index).subscribe((val) => {
+      this.passwordId = index;
       this.form.patchValue({
         category: val.category,
         app: val.app,
@@ -67,6 +76,16 @@ export class AppComponent {
         password: ""
       })
     })
+  }
+
+  clearForm() {
+    this.passwordId = null;
+    this.form.reset({
+      category: null,
+      app: null,
+      username: null,
+      password: null
+    });
   }
 
   onDeleteCredential(index: number): void {

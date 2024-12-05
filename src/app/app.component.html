@@ -49,14 +49,20 @@
       </mat-form-field>
     </div>
 
-    <!-- Submit Button -->
-    <button type="submit" mat-raised-button color="primary" class="w-full mt-6" [disabled]="form.invalid">
+    <button type="submit"
+      class="w-full mt-6 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed"
+      [disabled]="form.invalid">
       Submit
+    </button>
+
+    <button type="button" (click)="clearForm()"
+      class="w-full mt-6 py-2 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed">
+      Clear all inputs
     </button>
   </form>
 
 </div>
 <div *ngFor="let credential of credentials; let i = index">
   <app-credential-card [credential]="credential" [isSelected]="selectedCardIndex === i" (selectCard)="onCardSelect(i)"
-    (edit)="onEditCredential(i)" (delete)="onDeleteCredential(i)"></app-credential-card>
+    (edit)="onEditCredential(credential.id!)" (delete)="onDeleteCredential(credential.id!)"></app-credential-card>
 </div>
