@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DecryptedPassword, Password } from '../models/password';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class PasswordService {
   private baseUrl = 'http://localhost:5051/api/passwords'; // Your backend URL
 
   constructor(private http: HttpClient) { }
+
 
   // Add a password
   addPassword(password: Password): Observable<Password> {
@@ -44,22 +46,10 @@ export class PasswordService {
   deletePassword(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  verifyValue(value: string): Observable<{ message: string }> {
+    const payload = { Value: value };
+    return this.http.post<{ message: string }>(`${this.baseUrl}/verify`, payload);
+  }
 }
 
-// Define Password model
-export interface Password {
-  id?: number;
-  category: string;
-  app: string;
-  userName: string;
-  encryptedPassword: string;
-}
-
-// Define Decrypted Password model
-export interface DecryptedPassword {
-  id: number;
-  category: string;
-  app: string;
-  userName: string;
-  decryptedPassword: string;
-}

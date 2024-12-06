@@ -9,7 +9,6 @@ import { PasswordService } from '../services/password.service';
 export class CredentialCardComponent {
   @Input() credential: any;
   @Input() isSelected: boolean = false;
-  @Output() selectCard = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
 
@@ -36,9 +35,5 @@ export class CredentialCardComponent {
 
   onDelete(): void {
     this.delete.emit();
-  }
-
-  onSelect(): void {
-    this.selectCard.emit();
   }
 }

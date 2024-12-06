@@ -5,12 +5,6 @@
     }
 }
 
-/* credential-card.component.css */
-.selected {
-    border: 2px solid #3f51b5;
-    box-shadow: 0 4px 20px rgba(63, 81, 181, 0.2);
-}
-
 .password-display {
     font-size: 1.5rem;
     color: #333;
@@ -19,6 +13,9 @@
 .break-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    overflow: auto;
+    height: 50vh;
     /* Ensures items wrap to the next line if needed */
     gap: 10px;
 }
@@ -30,4 +27,5 @@
 
 .form {
     padding: 10px 3vw;
+    height: 40vh;
 }

@@ -18,12 +18,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
+import { AuthModalComponent } from './auth-modal/auth-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CredentialCardComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    AuthModalComponent
   ],
   imports: [
     BrowserAnimationsModule,

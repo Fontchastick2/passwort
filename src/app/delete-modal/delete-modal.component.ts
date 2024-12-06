@@ -13,13 +13,11 @@ export class DeleteModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  // Close dialog
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  // Close dialog and confirm delete
   onConfirm(): void {
-    this.dialogRef.close(true);  // Sends true to confirm the action
+    this.dialogRef.close(true);
   }
 }
