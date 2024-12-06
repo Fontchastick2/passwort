@@ -19,7 +19,7 @@ Passman is a simple yet secure password manager that allows you to store, retrie
      ```
      Ensure that the backend is running before using the frontend.
 
-   [Link to Backend Code](#)
+   [Link to Backend Code](https://github.com/Fontchastick2/password-backend/tree/main)
 
 ## Key Features & Usage
 
