@@ -29,3 +29,29 @@
     padding: 10px 3vw;
     height: 40vh;
 }
+
+.no-password-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+    /* Full viewport height */
+    text-align: center;
+}
+
+.no-password-image {
+    height: 20vh;
+    margin-bottom: 20px;
+}
+
+.no-password-container h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
+    transition: color 0.3s ease;
+}
