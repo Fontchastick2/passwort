@@ -1,27 +1,47 @@
-# Passwort
+# Passman: Password Management Tool
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+Passman is a simple yet secure password manager that allows you to store, retrieve, and manage your passwords. It supports features like encryption, password retrieval, and user verification. The app is designed with a clean interface and uses Angular for the frontend and a C# backend for secure password management.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Clone the repository.
+2. Install the necessary dependencies for both the frontend and backend:
+   - **Frontend (Angular)**:  
+     Navigate to the `frontend` directory and run:
+     ```bash
+     npm install
+     ng serve
+     ```
+   - **Backend (C# .NET)**:  
+     Navigate to the `backend` directory and run:
+     ```bash
+     dotnet run
+     ```
+     Ensure that the backend is running before using the frontend.
 
-## Code scaffolding
+   [Link to Backend Code](#)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Key Features & Usage
 
-## Build
+1. **Add Password**:  
+   Use the "Add Password" form to securely add new passwords. Enter the required fields: category, app, username, and password.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. **View and Decrypt Passwords**:  
+   The list of saved passwords is displayed in a clean UI. You can choose to decrypt and view a password or keep it masked.
 
-## Running unit tests
+3. **Edit Passwords**:  
+   Select an existing password, modify its details, and save the changes.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. **Delete Password**:  
+   Use the confirmation dialog to safely delete any password.
 
-## Running end-to-end tests
+5. **User Verification**:  
+   Enter a passkey (e.g., `jean@groupm`) to validate your identity and gain access to sensitive operations.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+6. **Profile & Status**:  
+   View the user’s profile with a round picture and verify status ("verified" or "unverified").
 
-## Further help
+## Technologies Used
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Frontend**: Angular, Tailwind CSS, Angular Material
+- **Backend**: C# (ASP.NET Core)
