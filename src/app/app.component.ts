@@ -93,13 +93,13 @@ export class AppComponent {
 
   onEditCredential(id: number): void {
     this.passwordId = id;
-    this.passwordSVC.getPasswordById(id).subscribe((val) => {
+    this.passwordSVC.getDecryptedPasswordById(id).subscribe((val) => {
       this.passwordId = id;
       this.form.patchValue({
         category: val.category,
         app: val.app,
         userName: val.userName,
-        password: ""
+        password: this.authSVC.user.verified ? val.decryptedPassword : ""
       })
     })
   }
